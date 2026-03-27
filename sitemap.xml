@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://bestdesksetup.com/</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://bestdesksetup.com/about.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://bestdesksetup.com/contact.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Disclosure -->
+  <url>
+    <loc>https://bestdesksetup.com/disclosure.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://bestdesksetup.com/privacy.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms -->
+  <url>
+    <loc>https://bestdesksetup.com/terms.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://bestdesksetup.com/articles/asus-rt-be86u-ps5-gaming-router.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/best-coding-accessories.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/cable-management-guide.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/cleaning-aluminum-laptops.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/displaying-collectible-figures.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/mac-mini-macbook-pro-desk-setup.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/mechanical-vs-magic-keyboard.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/optimizing-home-wifi.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/psychology-of-clean-desk.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://bestdesksetup.com/articles/sony-xr-tv-soundbars.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
