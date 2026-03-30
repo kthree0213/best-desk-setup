@@ -51,6 +51,13 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://bestdesksetup.com/articles/macbook-dual-monitor-120hz.html</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://bestdesksetup.com/articles/asus-rt-be86u-ps5-gaming-router.html</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
