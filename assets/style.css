@@ -143,9 +143,6 @@ a:hover { color: var(--accent-hover); }
   max-width: 52ch;
   line-height: 1.7;
 }
-.hero-actions { margin-top: 2rem; }
-
-/* ── Hero Stats Bar ── */
 .hero-stats {
   display: flex;
   align-items: center;
