@@ -1,149 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://bestdesksetup.com/articles/best-desk-decor-aesthetic-accessories-2026.html</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/best-budget-desk-setup-home-office-2026.html</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/best-walking-pads-home-office-2026.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/logitech-mx-master-3s-vs-apple-magic-mouse.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/macbook-multi-monitor-displaylink-guide.html</loc>
-    <lastmod>2026-04-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/monitor-height-neck-strain-ergonomics-guide.html</loc>
-    <lastmod>2026-04-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/lg-32gs95ue-vs-samsung-oled-g8.html</loc>
-    <lastmod>2026-04-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/desk-setup-dupes-under-30.html</loc>
-    <lastmod>2026-04-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bestdesksetup.com/articles/benq-screenbar-halo-vs-quntis-screen-bar.html</loc>
-    <lastmod>2026-04-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Homepage -->
-  <url>
-    <loc>https://bestdesksetup.com/</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- About -->
-  <url>
-    <loc>https://bestdesksetup.com/about.html</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Contact -->
-  <url>
-    <loc>https://bestdesksetup.com/contact.html</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Disclosure -->
-  <url>
-    <loc>https://bestdesksetup.com/disclosure.html</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Privacy Policy -->
-  <url>
-    <loc>https://bestdesksetup.com/privacy.html</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Terms -->
-  <url>
-    <loc>https://bestdesksetup.com/terms.html</loc>
-    <lastmod>2026-03-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Articles -->
-  <url>
-    <loc>https://bestdesksetup.com/articles/ergonomic-chair-coding.html</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://bestdesksetup.com/articles/best-thunderbolt-4-dock-macbook-pro.html</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://bestdesksetup.com/articles/best-silent-mechanical-keyboard-coding.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://bestdesksetup.com/articles/5k2k-oled-monitor.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://bestdesksetup.com/articles/standing-desk-wrist-pain.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://bestdesksetup.com/articles/macbook-dual-monitor-120hz.html</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  </urlset>
+  <url><loc>https://bestdesksetup.com/</loc><lastmod>2026-07-30</lastmod><priority>1.0</priority></url>
+  <url><loc>https://bestdesksetup.com/guides.html</loc><lastmod>2026-07-30</lastmod><priority>.9</priority></url>
+  <url><loc>https://bestdesksetup.com/method.html</loc><lastmod>2026-07-30</lastmod><priority>.7</priority></url>
+  <url><loc>https://bestdesksetup.com/about.html</loc><lastmod>2026-07-30</lastmod><priority>.5</priority></url>
+  <url><loc>https://bestdesksetup.com/disclosure.html</loc><lastmod>2026-07-30</lastmod><priority>.3</priority></url>
+  <url><loc>https://bestdesksetup.com/privacy.html</loc><lastmod>2026-07-30</lastmod><priority>.3</priority></url>
+  <url><loc>https://bestdesksetup.com/terms.html</loc><lastmod>2026-07-30</lastmod><priority>.3</priority></url>
+  <url><loc>https://bestdesksetup.com/contact.html</loc><lastmod>2026-07-30</lastmod><priority>.3</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/no-drill-cable-management-for-renters.html</loc><lastmod>2026-07-30</lastmod><priority>.9</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/clamp-vs-adhesive-cable-management.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/cable-management-for-standing-desks.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/small-desk-cable-management-checklist.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/measure-desk-for-clamp-accessories.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/vertical-storage-for-small-desks.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/monitor-arm-compatibility-small-desk.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/compact-desk-lighting-guide.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/small-desk-layout-guide.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/renter-friendly-desk-upgrades.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+  <url><loc>https://bestdesksetup.com/articles/how-to-route-desk-cables.html</loc><lastmod>2026-07-30</lastmod><priority>.8</priority></url>
+</urlset>
