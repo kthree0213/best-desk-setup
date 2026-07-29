@@ -1,0 +1,10 @@
+{
+  "name": "bestdesksetup-v3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-guides.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "test": "npm run build && node scripts/check-site.mjs"
+  }
+}
