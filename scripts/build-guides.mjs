@@ -6,8 +6,40 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const articleDir = path.join(root, 'articles');
 const siteUrl = 'https://bestdesksetup.com';
 const associateTag = 'bestdeskweb-20';
-const reviewed = 'July 30, 2026';
-const publishedIso = '2026-07-30';
+
+// These are editorial dates, not build timestamps. Update only the URL whose
+// reviewed content changed so sitemap and Article metadata remain truthful.
+const contentDates = Object.freeze({
+  '/': { modified: '2026-07-30' },
+  '/guides.html': { modified: '2026-07-30' },
+  '/method.html': { modified: '2026-07-30' },
+  '/about.html': { modified: '2026-07-30' },
+  '/disclosure.html': { modified: '2026-07-30' },
+  '/privacy.html': { modified: '2026-07-30' },
+  '/terms.html': { modified: '2026-07-30' },
+  '/contact.html': { modified: '2026-07-30' },
+  '/articles/no-drill-cable-management-for-renters.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/clamp-vs-adhesive-cable-management.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/cable-management-for-standing-desks.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/small-desk-cable-management-checklist.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/measure-desk-for-clamp-accessories.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/vertical-storage-for-small-desks.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/monitor-arm-compatibility-small-desk.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/compact-desk-lighting-guide.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/small-desk-layout-guide.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/renter-friendly-desk-upgrades.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/how-to-route-desk-cables.html': { published: '2026-07-30', modified: '2026-07-30' }
+});
+
+function datesFor(urlPath) {
+  const dates = contentDates[urlPath];
+  if (!dates) throw new Error(`Missing editorial dates for ${urlPath}`);
+  return dates;
+}
+
+function displayDate(isoDate) {
+  return new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${isoDate}T00:00:00Z`));
+}
 
 const images = {
   cables: '/assets/images/site-v3/no-drill-cable-tray.jpg',
@@ -69,7 +101,7 @@ function head({ title, description, canonical, image = images.layout, type = 'ar
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
   <link rel="stylesheet" href="/assets/site-v3.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SPN9T63MYG"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SPN9T63MYG');</script>
+  <script>if(location.hostname==='localhost'||location.hostname==='127.0.0.1')window['ga-disable-G-SPN9T63MYG']=true;window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SPN9T63MYG');</script>
   <script defer src="/assets/site-v3.js"></script>${schema ? `\n  <script type="application/ld+json">${JSON.stringify(schema)}</script>` : ''}
 </head>`;
 }
@@ -173,7 +205,7 @@ const articles = [
     sections: [
       { id: 'short-answer', title: 'The short answer', html: `<p>For most renters, the cleanest sequence is: place the power strip in a tray, park daily-use cables at the edge, contain the single visible run to the outlet, and keep a small service loop anywhere the desk or monitor moves. A clamp-on tray is the least surface-dependent option when the desk has a usable edge. Adhesive is the fallback when that edge is blocked, but only after checking the underside finish and accepting the removal risk.</p><div class="callout"><h3>Best starting point</h3><p>Choose by attachment geometry first. A beautiful tray that cannot clear the desk apron is not a solution. Measure the edge, underside obstruction, knee space, and route to the outlet before comparing colors or capacity.</p></div>` },
       { id: 'measure', title: 'Measure four things before buying', html: `<ol><li><strong>Desktop thickness:</strong> measure the full thickness where the clamp would sit, including any beveled edge.</li><li><strong>Clamp depth:</strong> check how far the clamp must reach under the desk before it finds a flat surface.</li><li><strong>Underside clearance:</strong> note aprons, crossbars, drawers, controls, and standing-desk hardware.</li><li><strong>Knee and wall clearance:</strong> locate the tray where it will not hit your legs or prevent the desk from moving close to the wall.</li></ol><p>Write the numbers down and compare them with the current product listing. Listing dimensions can change, so we deliberately do not reproduce them as permanent facts here. If your edge is irregular, start with our <a href="/articles/measure-desk-for-clamp-accessories.html">clamp measurement guide</a>.</p>` },
-      { id: 'picks', title: 'Four useful installation styles to compare', html: `<p>Most desks need one primary tray, not every item below. We checked that each linked US listing matched its stated installation role on ${reviewed}; confirm the current dimensions, included hardware, and return terms on Amazon before ordering.</p>${pickChooser}${corePicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. We do not show copied prices or ratings because they can change.</p>` },
+      { id: 'picks', title: 'Four useful installation styles to compare', html: `<p>Most desks need one primary tray, not every item below. We checked that each linked US listing matched its stated installation role on ${displayDate(datesFor('/articles/no-drill-cable-management-for-renters.html').modified)}; confirm the current dimensions, included hardware, and return terms on Amazon before ordering.</p>${pickChooser}${corePicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. We do not show copied prices or ratings because they can change.</p>` },
       { id: 'install', title: 'Install in the right order', html: `<ol><li><strong>Unplug and untangle.</strong> Photograph the existing connections, then disconnect only what you can identify.</li><li><strong>Place the power strip.</strong> Keep its switch reachable and its ventilation unobstructed. Do not daisy-chain power strips.</li><li><strong>Route from fixed to moving.</strong> Start at the outlet and leave controlled slack at the desk, monitor, and laptop dock.</li><li><strong>Separate parking from carrying.</strong> Small clips park charging leads; a tray carries adapters and the strip; a sleeve contains the visible drop.</li><li><strong>Test every movement.</strong> Raise a standing desk, rotate a monitor arm, pull the chair in, and make sure nothing becomes taut.</li></ol><p>Do not cinch signal or power cables so tightly that connectors bear the strain. Reopenable hook-and-loop ties make later changes much easier than permanent zip ties.</p>` },
       { id: 'tradeoffs', title: 'Clamp, adhesive, clips, or sleeve?', html: `<table><thead><tr><th>Method</th><th>Choose it when</th><th>Watch for</th></tr></thead><tbody><tr><td>Clamp-on tray</td><td>Flat edge, clear underside, heavier adapters</td><td>Clamp visibility, edge marks, wall clearance</td></tr><tr><td>Adhesive tray/channel</td><td>Blocked edge, smooth sealed underside</td><td>Finish damage, heat, dust, load limits</td></tr><tr><td>Cable clips</td><td>Daily charging leads need a parking spot</td><td>Cable diameter and adhesive footprint</td></tr><tr><td>Zipper sleeve</td><td>One visible bundle runs to the outlet</td><td>No support for power strips or bricks</td></tr></tbody></table><p>A hybrid usually works better than asking one accessory to do everything: tray for weight, clips for reach, sleeve for the final visible run.</p>` },
       { id: 'renter-safety', title: 'A renter-friendly removal plan', html: `<p>Keep packaging and mounting instructions until the system has survived a week of normal use. For adhesive parts, follow the manufacturer’s removal directions, work slowly, and stop if the desk finish begins to lift. Heat or solvents can damage laminate and veneer, so do not improvise a removal method on an unknown surface.</p><p>Photograph the underside before installation and after removal. If the desk belongs to a landlord or dorm, a clamp with protective pads is often easier to inspect and reverse than a high-bond adhesive mount—but only if the edge is structurally suitable.</p>` },
@@ -369,18 +401,57 @@ const articles = [
   }
 ];
 
+const relatedGuideSlugs = Object.freeze({
+  'clamp-vs-adhesive-cable-management': ['no-drill-cable-management-for-renters', 'measure-desk-for-clamp-accessories', 'how-to-route-desk-cables'],
+  'measure-desk-for-clamp-accessories': ['no-drill-cable-management-for-renters', 'monitor-arm-compatibility-small-desk', 'compact-desk-lighting-guide'],
+  'vertical-storage-for-small-desks': ['small-desk-layout-guide', 'renter-friendly-desk-upgrades', 'monitor-arm-compatibility-small-desk'],
+  'monitor-arm-compatibility-small-desk': ['measure-desk-for-clamp-accessories', 'small-desk-layout-guide', 'vertical-storage-for-small-desks'],
+  'compact-desk-lighting-guide': ['small-desk-layout-guide', 'vertical-storage-for-small-desks', 'measure-desk-for-clamp-accessories'],
+  'renter-friendly-desk-upgrades': ['no-drill-cable-management-for-renters', 'vertical-storage-for-small-desks', 'small-desk-layout-guide']
+});
+
+function relatedArticles(article) {
+  const categoryPeers = articles.filter((candidate) => candidate.slug !== article.slug && candidate.category === article.category).map((candidate) => candidate.slug);
+  const fallbackSlugs = ['no-drill-cable-management-for-renters', 'measure-desk-for-clamp-accessories', 'small-desk-layout-guide'];
+  const orderedSlugs = [...(relatedGuideSlugs[article.slug] || []), ...categoryPeers, ...fallbackSlugs, ...articles.map((candidate) => candidate.slug)];
+  const uniqueSlugs = [...new Set(orderedSlugs)].filter((slug) => slug !== article.slug);
+  return uniqueSlugs.map((slug) => articles.find((candidate) => candidate.slug === slug)).filter(Boolean).slice(0, 3);
+}
+
 function articleSchema(article) {
+  const canonical = `${siteUrl}/articles/${article.slug}.html`;
+  const dates = datesFor(`/articles/${article.slug}.html`);
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.description,
-    image: `${siteUrl}${article.image}`,
-    datePublished: publishedIso,
-    dateModified: publishedIso,
-    author: { '@type': 'Organization', name: 'Best Desk Setup Editorial' },
-    publisher: { '@type': 'Organization', name: 'Best Desk Setup', url: siteUrl },
-    mainEntityOfPage: `${siteUrl}/articles/${article.slug}.html`
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${canonical}#article`,
+        headline: article.title,
+        description: article.description,
+        image: `${siteUrl}${article.image}`,
+        datePublished: dates.published,
+        dateModified: dates.modified,
+        inLanguage: 'en-US',
+        author: { '@type': 'Organization', name: 'Best Desk Setup Editorial', url: `${siteUrl}/about.html` },
+        publisher: {
+          '@type': 'Organization',
+          '@id': `${siteUrl}/#organization`,
+          name: 'Best Desk Setup',
+          url: `${siteUrl}/`,
+          logo: { '@type': 'ImageObject', url: `${siteUrl}/apple-touch-icon.png`, width: 180, height: 180 }
+        },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonical }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: 'Guides', item: `${siteUrl}/guides.html` },
+          { '@type': 'ListItem', position: 3, name: article.title, item: canonical }
+        ]
+      }
+    ]
   };
 }
 
@@ -388,7 +459,7 @@ function articlePage(article) {
   const canonical = `${siteUrl}/articles/${article.slug}.html`;
   const toc = article.sections.map((section) => `<a href="#${section.id}">${section.title}</a>`).join('');
   const body = article.sections.map((section) => `<section id="${section.id}"><h2>${section.title}</h2>${section.html}</section>`).join('\n');
-  const related = articles.filter((candidate) => candidate.slug !== article.slug && (candidate.category === article.category || candidate.image === article.image)).slice(0, 3);
+  const related = relatedArticles(article);
   const relatedHtml = related.map((item) => `<li><a href="/articles/${item.slug}.html">${item.title}</a></li>`).join('');
   return `${head({ title: `${article.title} | Best Desk Setup`, description: article.description, canonical, image: article.image, schema: articleSchema(article) })}
 <body class="article-page">
@@ -400,7 +471,7 @@ ${header}
           <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/guides.html">Guides</a><span>/</span><span>${article.category}</span></nav>
           <h1>${article.title}</h1>
           <p class="article-dek">${article.dek}</p>
-          <div class="article-meta"><span>By Best Desk Setup Editorial</span><span>Reviewed ${reviewed}</span><span>${article.readTime}</span></div>
+          <div class="article-meta"><span>By Best Desk Setup Editorial</span><span>Reviewed ${displayDate(datesFor(`/articles/${article.slug}.html`).modified)}</span><span>${article.readTime}</span></div>
           <p class="article-disclosure"><strong>Disclosure:</strong> As an Amazon Associate, we earn from qualifying purchases. Product links are clearly marked; our fit guidance is independent of whether a link pays us.</p>
           <figure class="article-hero"><img src="${article.image}" alt="${article.alt}" width="1448" height="1086"></figure>
         </div>
@@ -482,7 +553,7 @@ function informationPage({ slug, title, description, intro, sections }) {
 ${header}
   <main id="main">
     <section class="page-hero"><div class="shell"><p class="section-label">Site information</p><h1>${title}</h1><p>${intro}</p></div></section>
-    <section class="section"><div class="article-wrap article-layout"><article class="article-content">${sectionHtml}<p class="policy-date">Last updated: ${reviewed}</p></article><aside class="article-aside"><h2>Site information</h2><nav><a href="/about.html">About</a><a href="/method.html">Our Method</a><a href="/disclosure.html">Affiliate Disclosure</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact.html">Contact</a></nav></aside></div></section>
+    <section class="section"><div class="article-wrap article-layout"><article class="article-content">${sectionHtml}<p class="policy-date">Last updated: ${displayDate(datesFor(`/${slug}.html`).modified)}</p></article><aside class="article-aside"><h2>Site information</h2><nav><a href="/about.html">About</a><a href="/method.html">Our Method</a><a href="/disclosure.html">Affiliate Disclosure</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact.html">Contact</a></nav></aside></div></section>
   </main>
 ${footer}
 </body>
@@ -571,11 +642,11 @@ function redirectPage(from, target) {
 
 function sitemap() {
   const urls = [
-    ['/', '1.0'], ['/guides.html', '.9'], ['/method.html', '.7'], ['/about.html', '.5'],
-    ['/disclosure.html', '.3'], ['/privacy.html', '.3'], ['/terms.html', '.3'], ['/contact.html', '.3'],
-    ...articles.map((article) => [`/articles/${article.slug}.html`, article.slug === 'no-drill-cable-management-for-renters' ? '.9' : '.8'])
+    { url: '/', priority: '1.0' }, { url: '/guides.html', priority: '.9' }, { url: '/method.html', priority: '.7' }, { url: '/about.html', priority: '.5' },
+    { url: '/disclosure.html', priority: '.3' }, { url: '/privacy.html', priority: '.3' }, { url: '/terms.html', priority: '.3' }, { url: '/contact.html', priority: '.3' },
+    ...articles.map((article) => ({ url: `/articles/${article.slug}.html`, priority: article.slug === 'no-drill-cable-management-for-renters' ? '.9' : '.8' }))
   ];
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([url, priority]) => `  <url><loc>${siteUrl}${url}</loc><lastmod>${publishedIso}</lastmod><priority>${priority}</priority></url>`).join('\n')}\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(({ url, priority }) => `  <url><loc>${siteUrl}${url}</loc><lastmod>${datesFor(url).modified}</lastmod><priority>${priority}</priority></url>`).join('\n')}\n</urlset>\n`;
 }
 
 await mkdir(articleDir, { recursive: true });

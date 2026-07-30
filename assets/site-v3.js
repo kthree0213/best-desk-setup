@@ -38,11 +38,21 @@
 
   document.querySelectorAll('a[href*="amazon.com"][data-affiliate]').forEach((link) => {
     link.addEventListener('click', () => {
+      const destination = new URL(link.href, window.location.href);
+      const asin = link.dataset.asin || '';
+      const productName = link.dataset.product || '';
       track('affiliate_click', {
         affiliate_network: 'amazon',
-        asin: link.dataset.asin || '',
-        product_name: link.dataset.product || '',
-        link_position: link.dataset.position || ''
+        affiliate_id: destination.searchParams.get('tag') || '',
+        asin,
+        item_id: asin,
+        item_name: productName,
+        product_name: productName,
+        link_position: link.dataset.position || '',
+        link_url: destination.href,
+        link_domain: destination.hostname,
+        link_text: link.textContent.trim().replace(/\s+/g, ' '),
+        outbound: true
       });
     });
   });
