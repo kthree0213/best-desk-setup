@@ -11,6 +11,10 @@ const publishedIso = '2026-07-30';
 
 const images = {
   cables: '/assets/images/site-v3/no-drill-cable-tray.jpg',
+  comparison: '/assets/images/site-v3/clamp-vs-adhesive-cable-management.webp',
+  standing: '/assets/images/site-v3/standing-desk-cable-management.webp',
+  checklist: '/assets/images/site-v3/small-desk-cable-checklist.webp',
+  routing: '/assets/images/site-v3/desk-cable-routing.webp',
   storage: '/assets/images/site-v3/vertical-storage.jpg',
   monitor: '/assets/images/site-v3/monitor-arm.jpg',
   lighting: '/assets/images/site-v3/compact-lighting.jpg',
@@ -70,54 +74,87 @@ function head({ title, description, canonical, image = images.layout, type = 'ar
 </head>`;
 }
 
-function affiliateButton({ asin, product, position }) {
-  return `<a class="affiliate-button" href="https://www.amazon.com/dp/${asin}?tag=${associateTag}" target="_blank" rel="sponsored noopener noreferrer" data-affiliate data-asin="${asin}" data-product="${product}" data-position="${position}">Check fit and availability on Amazon <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>`;
+function affiliateButton({ asin, product, position, shortName }) {
+  return `<a class="affiliate-button" href="https://www.amazon.com/dp/${asin}?tag=${associateTag}" target="_blank" rel="sponsored noopener noreferrer" data-affiliate data-asin="${asin}" data-product="${product}" data-position="${position}">Check ${shortName} on Amazon <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>`;
 }
 
-function pick({ type, name, summary, fit, tradeoff, asin, position }) {
-  return `<article class="product-pick">
-    <header><div><p class="pick-type">${type}</p><h3>${name}</h3></div></header>
+function pick({ number, id, type, guidance, name, shortName, summary, fit, tradeoff, confirm, asin, position, primary = false }) {
+  return `<article class="product-pick${primary ? ' product-pick--primary' : ''}" id="${id}">
+    <header class="pick-header"><span class="pick-number" aria-hidden="true">${number}</span><div><p class="pick-type">${type}</p><h3>${name}</h3><p class="pick-guidance">${guidance}</p></div></header>
     <p>${summary}</p>
     <div class="pick-facts"><div><strong>Good fit when</strong><span>${fit}</span></div><div><strong>Main trade-off</strong><span>${tradeoff}</span></div></div>
-    ${affiliateButton({ asin, product: name, position })}
+    <p class="pick-confirm"><strong>Confirm on Amazon:</strong> ${confirm}</p>
+    <div class="pick-action">${affiliateButton({ asin, product: name, position, shortName })}<span>Opens the current US listing.</span></div>
   </article>`;
 }
+
+const pickChooser = `
+  <div class="pick-chooser" role="region" aria-label="Choose an installation style">
+    <p><strong>These are four separate Amazon listings, not four versions of the same item.</strong> Choose one primary mounting method, then add a sleeve only if a visible cable run still needs containment.</p>
+    <div class="pick-chooser-grid">
+      <a href="#pick-clamp" data-track="chooser_flat_edge"><span>Flat, exposed desk edge</span><strong>Start with a clamp tray <i class="ph ph-arrow-down" aria-hidden="true"></i></strong></a>
+      <a href="#pick-adhesive" data-track="chooser_blocked_edge"><span>Apron or frame blocks the edge</span><strong>Check an adhesive tray <i class="ph ph-arrow-down" aria-hidden="true"></i></strong></a>
+      <a href="#pick-light" data-track="chooser_light_setup"><span>Clamp fits, but black feels too heavy</span><strong>See the light-color option <i class="ph ph-arrow-down" aria-hidden="true"></i></strong></a>
+      <a href="#pick-sleeve" data-track="chooser_visible_run"><span>The tray is fine; the drop is messy</span><strong>Add a cable sleeve <i class="ph ph-arrow-down" aria-hidden="true"></i></strong></a>
+    </div>
+  </div>`;
 
 const corePicks = `
   <div class="pick-list">
     ${pick({
+      number: '01',
+      id: 'pick-clamp',
       type: 'Clamp-on tray',
+      guidance: 'The common starting point for a flat, exposed desk edge.',
       name: 'Litwaro Cable Management Tray',
+      shortName: 'Litwaro',
       summary: 'A metal under-desk tray that attaches at the desk edge, so the power strip and excess cable can move off the floor without adhesive on the desktop.',
       fit: 'Your desk has a flat, exposed rear or side edge and clear space below it.',
       tradeoff: 'The clamps remain visible and edge geometry determines whether it can attach.',
+      confirm: 'Clamp opening, usable edge depth, tray clearance, and included hardware.',
       asin: 'B0BZ3GHM8N',
-      position: 'pick_1_clamp'
+      position: 'pick_1_clamp',
+      primary: true
     })}
     ${pick({
+      number: '02',
+      id: 'pick-adhesive',
       type: 'Adhesive tray',
+      guidance: 'Use this route when a frame or apron makes an edge clamp impossible.',
       name: 'Scandinavian Hub Under Desk Cable Management Tray',
+      shortName: 'Scandinavian Hub',
       summary: 'A no-drill route for desks whose edge is blocked by a frame or apron. Treat the adhesive as surface-dependent rather than universally removable.',
       fit: 'The underside is smooth, sealed, clean, and wide enough for the mounting area.',
       tradeoff: 'Adhesive performance and removal risk vary with finish, dust, heat, and load.',
+      confirm: 'Surface instructions, stated load, cure time, mounting footprint, and removal guidance.',
       asin: 'B09J5HH2LR',
       position: 'pick_2_adhesive'
     })}
     ${pick({
+      number: '03',
+      id: 'pick-light',
       type: 'Light-color clamp tray',
+      guidance: 'A visual alternative only after the desk passes the same clamp-fit checks.',
       name: 'Cinati Under Desk Cable Management Tray',
+      shortName: 'Cinati',
       summary: 'A clamp-on tray option for a light-colored setup. The buying decision should still be based on edge fit and knee clearance, not color alone.',
       fit: 'You want a clamp mount and have measured both desktop thickness and underside clearance.',
       tradeoff: 'Like any edge clamp, it can conflict with drawers, aprons, or a desk flush against a wall.',
+      confirm: 'Clamp opening, edge shape, knee clearance, wall clearance, and current color options.',
       asin: 'B0BPLRX32S',
       position: 'pick_3_clamp_light'
     })}
     ${pick({
+      number: '04',
+      id: 'pick-sleeve',
       type: 'Visible-run sleeve',
+      guidance: 'This complements a tray; it does not replace one.',
       name: 'JOTO Zipper Cable Management Sleeve',
+      shortName: 'JOTO',
       summary: 'A sleeve for containing the visible bundle between the desk and outlet. It complements a tray but does not support a power strip.',
       fit: 'Several cables share one route and need to remain accessible for changes.',
       tradeoff: 'It tidies a bundle but cannot remove floor-level adapters or create mounting space.',
+      confirm: 'Sleeve diameter, usable length, closure style, and the number of cables it can contain.',
       asin: 'B015HWXG4M',
       position: 'pick_4_sleeve'
     })}
@@ -136,7 +173,7 @@ const articles = [
     sections: [
       { id: 'short-answer', title: 'The short answer', html: `<p>For most renters, the cleanest sequence is: place the power strip in a tray, park daily-use cables at the edge, contain the single visible run to the outlet, and keep a small service loop anywhere the desk or monitor moves. A clamp-on tray is the least surface-dependent option when the desk has a usable edge. Adhesive is the fallback when that edge is blocked, but only after checking the underside finish and accepting the removal risk.</p><div class="callout"><h3>Best starting point</h3><p>Choose by attachment geometry first. A beautiful tray that cannot clear the desk apron is not a solution. Measure the edge, underside obstruction, knee space, and route to the outlet before comparing colors or capacity.</p></div>` },
       { id: 'measure', title: 'Measure four things before buying', html: `<ol><li><strong>Desktop thickness:</strong> measure the full thickness where the clamp would sit, including any beveled edge.</li><li><strong>Clamp depth:</strong> check how far the clamp must reach under the desk before it finds a flat surface.</li><li><strong>Underside clearance:</strong> note aprons, crossbars, drawers, controls, and standing-desk hardware.</li><li><strong>Knee and wall clearance:</strong> locate the tray where it will not hit your legs or prevent the desk from moving close to the wall.</li></ol><p>Write the numbers down and compare them with the current product listing. Listing dimensions can change, so we deliberately do not reproduce them as permanent facts here. If your edge is irregular, start with our <a href="/articles/measure-desk-for-clamp-accessories.html">clamp measurement guide</a>.</p>` },
-      { id: 'picks', title: 'Four useful installation styles to compare', html: `<p>These are examples of the four roles in a no-drill system, not a universal ranking. We checked that the linked US listings matched their stated installation category on ${reviewed}; confirm the current dimensions, included hardware, and return terms on Amazon before ordering.</p>${corePicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. We do not show copied prices or ratings because they can change.</p>` },
+      { id: 'picks', title: 'Four useful installation styles to compare', html: `<p>Most desks need one primary tray, not every item below. We checked that each linked US listing matched its stated installation role on ${reviewed}; confirm the current dimensions, included hardware, and return terms on Amazon before ordering.</p>${pickChooser}${corePicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. We do not show copied prices or ratings because they can change.</p>` },
       { id: 'install', title: 'Install in the right order', html: `<ol><li><strong>Unplug and untangle.</strong> Photograph the existing connections, then disconnect only what you can identify.</li><li><strong>Place the power strip.</strong> Keep its switch reachable and its ventilation unobstructed. Do not daisy-chain power strips.</li><li><strong>Route from fixed to moving.</strong> Start at the outlet and leave controlled slack at the desk, monitor, and laptop dock.</li><li><strong>Separate parking from carrying.</strong> Small clips park charging leads; a tray carries adapters and the strip; a sleeve contains the visible drop.</li><li><strong>Test every movement.</strong> Raise a standing desk, rotate a monitor arm, pull the chair in, and make sure nothing becomes taut.</li></ol><p>Do not cinch signal or power cables so tightly that connectors bear the strain. Reopenable hook-and-loop ties make later changes much easier than permanent zip ties.</p>` },
       { id: 'tradeoffs', title: 'Clamp, adhesive, clips, or sleeve?', html: `<table><thead><tr><th>Method</th><th>Choose it when</th><th>Watch for</th></tr></thead><tbody><tr><td>Clamp-on tray</td><td>Flat edge, clear underside, heavier adapters</td><td>Clamp visibility, edge marks, wall clearance</td></tr><tr><td>Adhesive tray/channel</td><td>Blocked edge, smooth sealed underside</td><td>Finish damage, heat, dust, load limits</td></tr><tr><td>Cable clips</td><td>Daily charging leads need a parking spot</td><td>Cable diameter and adhesive footprint</td></tr><tr><td>Zipper sleeve</td><td>One visible bundle runs to the outlet</td><td>No support for power strips or bricks</td></tr></tbody></table><p>A hybrid usually works better than asking one accessory to do everything: tray for weight, clips for reach, sleeve for the final visible run.</p>` },
       { id: 'renter-safety', title: 'A renter-friendly removal plan', html: `<p>Keep packaging and mounting instructions until the system has survived a week of normal use. For adhesive parts, follow the manufacturer’s removal directions, work slowly, and stop if the desk finish begins to lift. Heat or solvents can damage laminate and veneer, so do not improvise a removal method on an unknown surface.</p><p>Photograph the underside before installation and after removal. If the desk belongs to a landlord or dorm, a clamp with protective pads is often easier to inspect and reverse than a high-bond adhesive mount—but only if the edge is structurally suitable.</p>` },
@@ -149,8 +186,8 @@ const articles = [
     title: 'Clamp-on vs. adhesive cable management',
     description: 'Compare clamp-on and adhesive cable management by desk geometry, surface, load, removal, and access.',
     dek: 'The right answer depends less on how the tray looks and more on what the desk gives it to hold onto.',
-    image: images.cables,
-    alt: 'Cable tray mounted below a wood desk without drilled holes',
+    image: images.comparison,
+    alt: 'Clamp-on tray and adhesive cable channel installed beneath a light wood desk',
     readTime: '7 min read',
     sections: [
       { id: 'decision', title: 'The decision in one minute', html: `<p>Choose a <strong>clamp</strong> when the desk has a flat exposed edge, the underside is clear, and you want a mount that can be removed without adhesive residue. Choose <strong>adhesive</strong> when an apron or frame blocks that edge but the underside is smooth, sealed, clean, and suitable for the product’s stated load. If neither condition is true, use lightweight clips or a floor-to-desk sleeve and avoid forcing a tray into the setup.</p>` },
@@ -167,8 +204,8 @@ const articles = [
     title: 'Cable management for standing desks that actually move',
     description: 'Route power and signal cables for a standing desk with controlled slack, fixed and moving zones, and a full-height movement test.',
     dek: 'A standing desk cable plan has to look tidy at sitting height and remain safe at full height.',
-    image: images.cables,
-    alt: 'Organized power strip and cables mounted below a compact desk',
+    image: images.standing,
+    alt: 'Standing desk with a mounted power strip, controlled service loop, and vertical cable sleeve',
     readTime: '8 min read',
     sections: [
       { id: 'motion-first', title: 'Design around movement first', html: `<p>The common mistake is bundling cables while the desk is sitting, then discovering that the bundle becomes taut when the desk rises. Set the desk to its highest working position before finalizing any route. Every cable that crosses from the moving desktop to the fixed wall or floor needs enough controlled slack for that full travel.</p><p>Controlled slack means a deliberate loop with a clear path—not a pile that can catch a foot or chair caster.</p>` },
@@ -185,8 +222,8 @@ const articles = [
     title: 'A small-desk cable management checklist',
     description: 'A practical checklist for sorting, routing, parking, labeling, and testing cables on a compact desk.',
     dek: 'Tidy the system by function: support the weight, control the slack, and keep everyday cables within reach.',
-    image: images.cables,
-    alt: 'Tidy under-desk power and cable routing on a small desk',
+    image: images.checklist,
+    alt: 'Compact desk with cable clips, reusable ties, a mounted power strip, and a cable sleeve',
     readTime: '6 min read',
     sections: [
       { id: 'reset', title: 'Start with a reset, not more accessories', html: `<p>Take a photo of the working setup, shut devices down, and disconnect only the cables you can identify. Remove abandoned chargers, duplicate adapters, and cables that no longer reach a device. A smaller system is easier to route and easier to troubleshoot.</p><div class="callout"><h3>Keep a “not sure” bag</h3><p>Do not throw away an unidentified cable during the cleanup. Label it with the date and store it away from the desk. If nothing needs it after a month, decide whether to recycle it properly.</p></div>` },
@@ -317,8 +354,8 @@ const articles = [
     title: 'How to route desk cables from outlet to device',
     description: 'Plan one inspectable cable route from the wall outlet to the power strip, desk, monitor, and daily-use devices.',
     dek: 'A good route is short, supported, movable where necessary, and easy to reopen when one device changes.',
-    image: images.cables,
-    alt: 'Power strip and cable bundle organized below a desk',
+    image: images.routing,
+    alt: 'Visible cable route from a wall outlet to a mounted power strip and desk devices',
     readTime: '7 min read',
     sections: [
       { id: 'map', title: 'Draw the route before attaching anything', html: `<p>Mark the wall outlet, desk entry point, power-strip location, fixed devices, and moving devices. The route should avoid doorways, heat sources, sharp edges, chair casters, and the travel path of drawers or lift columns.</p><p>Whenever possible, create one main transition from the fixed room to the desk, then branch near the devices.</p>` },
@@ -391,8 +428,8 @@ function guideIndexPage() {
 <body>
 ${header}
   <main id="main">
-    <section class="page-hero"><div class="shell"><p class="section-label">The guide library</p><h1>Fix the constraint you can see.</h1><p>Start with cables, space, screen position, or lighting. Every guide prioritizes fit, reversibility, and the smallest useful change.</p></div></section>
-    <section class="section"><div class="shell guide-index"><aside><h2>${articles.length} practical guides</h2><p>No copied prices, no unexplained rankings, and no hands-on claims we cannot document.</p><a class="text-link" href="/method.html">How we research <i class="ph ph-arrow-right" aria-hidden="true"></i></a></aside><div class="guide-list">${rows}</div></div></section>
+    <section class="page-hero"><div class="shell"><p class="section-label">The guide library</p><h1>Choose the problem before the product.</h1><p>Browse ${articles.length} separate guides for cables, space, screen position, and lighting. Every guide prioritizes fit, reversibility, and the smallest useful change.</p></div></section>
+    <section class="section"><div class="shell guide-index"><aside><h2>Guide library</h2><p>Each row is a separate article built around one desk constraint—not another version of the same product.</p><a class="text-link" href="/method.html">How we research <i class="ph ph-arrow-right" aria-hidden="true"></i></a></aside><div class="guide-list">${rows}</div></div></section>
   </main>
 ${footer}
 </body>
