@@ -10,8 +10,8 @@ const associateTag = 'bestdeskweb-20';
 // These are editorial dates, not build timestamps. Update only the URL whose
 // reviewed content changed so sitemap and Article metadata remain truthful.
 const contentDates = Object.freeze({
-  '/': { modified: '2026-07-30' },
-  '/guides.html': { modified: '2026-07-30' },
+  '/': { modified: '2026-07-31' },
+  '/guides.html': { modified: '2026-07-31' },
   '/method.html': { modified: '2026-07-30' },
   '/about.html': { modified: '2026-07-30' },
   '/disclosure.html': { modified: '2026-07-30' },
@@ -28,7 +28,10 @@ const contentDates = Object.freeze({
   '/articles/compact-desk-lighting-guide.html': { published: '2026-07-30', modified: '2026-07-30' },
   '/articles/small-desk-layout-guide.html': { published: '2026-07-30', modified: '2026-07-30' },
   '/articles/renter-friendly-desk-upgrades.html': { published: '2026-07-30', modified: '2026-07-30' },
-  '/articles/how-to-route-desk-cables.html': { published: '2026-07-30', modified: '2026-07-30' }
+  '/articles/how-to-route-desk-cables.html': { published: '2026-07-30', modified: '2026-07-30' },
+  '/articles/cable-management-for-desks-with-back-apron.html': { published: '2026-07-31', modified: '2026-07-31' },
+  '/articles/monitor-arm-for-desk-against-wall.html': { published: '2026-07-31', modified: '2026-07-31' },
+  '/articles/monitor-light-bar-vs-clamp-lamp.html': { published: '2026-07-31', modified: '2026-07-31' }
 });
 
 function datesFor(urlPath) {
@@ -50,7 +53,10 @@ const images = {
   storage: '/assets/images/site-v3/vertical-storage.jpg',
   monitor: '/assets/images/site-v3/monitor-arm.jpg',
   lighting: '/assets/images/site-v3/compact-lighting.jpg',
-  layout: '/assets/images/site-v3/hero-compact-desk.jpg'
+  layout: '/assets/images/site-v3/hero-compact-desk.jpg',
+  apron: '/assets/images/site-v3/cable-management-desk-apron.jpg',
+  wallMonitor: '/assets/images/site-v3/monitor-arm-desk-against-wall.jpg',
+  lightingChoice: '/assets/images/site-v3/monitor-light-bar-vs-clamp-lamp.jpg'
 };
 
 const header = `
@@ -189,6 +195,147 @@ const corePicks = `
       confirm: 'Sleeve diameter, usable length, closure style, and the number of cables it can contain.',
       asin: 'B015HWXG4M',
       position: 'pick_4_sleeve'
+    })}
+  </div>`;
+
+const apronPicks = `
+  <div class="pick-list">
+    ${pick({
+      number: '01',
+      id: 'apron-pick-adhesive',
+      type: 'Adhesive tray',
+      guidance: 'For a smooth underside when the rear edge is fully blocked.',
+      name: 'Scandinavian Hub Under Desk Cable Management Tray',
+      shortName: 'Scandinavian Hub',
+      summary: 'A no-screw tray route that avoids the rear desk edge entirely. Treat the bond as surface- and installation-dependent.',
+      fit: 'The mounting area is flat, sealed, clean, and large enough for the full adhesive footprint.',
+      tradeoff: 'Removal risk, cure time, heat, surface finish, and total load all matter.',
+      confirm: 'Approved surfaces, mounting orientation, cure time, stated load, and removal instructions.',
+      asin: 'B09J5HH2LR',
+      position: 'apron_pick_1_adhesive_tray',
+      primary: true
+    })}
+    ${pick({
+      number: '02',
+      id: 'apron-pick-clips',
+      type: 'Lightweight cable parking',
+      guidance: 'For individual leads when the desk cannot support a loaded tray.',
+      name: 'OHill Cable Clips',
+      shortName: 'OHill clips',
+      summary: 'Small adhesive clips can guide lightweight device cables around an apron without asking one mount to carry a power strip.',
+      fit: 'You need to park or guide individual cables rather than support adapters.',
+      tradeoff: 'They do not carry heavy bricks, a power strip, or a large bundled load.',
+      confirm: 'Cable-slot sizes, mounting surface guidance, included quantities, and removal instructions.',
+      asin: 'B071FXZBMV',
+      position: 'apron_pick_2_clips'
+    })}
+    ${pick({
+      number: '03',
+      id: 'apron-pick-sleeve',
+      type: 'Visible-run sleeve',
+      guidance: 'For the single bundle that still has to drop from desk to outlet.',
+      name: 'JOTO Zipper Cable Management Sleeve',
+      shortName: 'JOTO sleeve',
+      summary: 'A reopenable sleeve contains a visible bundle after the power strip and adapters have a safe support location.',
+      fit: 'Several cables share one route and need to stay accessible for later changes.',
+      tradeoff: 'A sleeve tidies the run but cannot replace structural support for heavy power hardware.',
+      confirm: 'Usable length, sleeve diameter, closure, and fit for the cables in your route.',
+      asin: 'B015HWXG4M',
+      position: 'apron_pick_3_sleeve'
+    })}
+  </div>`;
+
+const wallMonitorPicks = `
+  <div class="pick-list">
+    ${pick({
+      number: '01',
+      id: 'wall-pick-pole',
+      type: 'Pole-style monitor arm',
+      guidance: 'A useful starting geometry when the screen can fold sideways instead of straight back.',
+      name: 'VIVO STAND-V001 Single Monitor Arm',
+      shortName: 'VIVO arm',
+      summary: 'A pole-based arm lets you choose mounting height and can often be arranged with its joints beside the screen rather than directly behind it.',
+      fit: 'The monitor, VESA pattern, desk edge, and clamp area all match the current listing.',
+      tradeoff: 'The pole and clamp still consume rear and underside space, and the arm is not a zero-clearance mount.',
+      confirm: 'Monitor weight and size range, VESA pattern, clamp opening, pole height, and joint clearance.',
+      asin: 'B00B21TLQU',
+      position: 'wall_pick_1_pole_arm',
+      primary: true
+    })}
+    ${pick({
+      number: '02',
+      id: 'wall-pick-gas',
+      type: 'Gas-spring arm',
+      guidance: 'For frequent repositioning when the wall gap gives the joints room to travel.',
+      name: 'HUANUO Single Monitor Arm',
+      shortName: 'HUANUO arm',
+      summary: 'A gas-spring arm offers flexible positioning, but that flexibility creates a larger motion envelope behind and beside the monitor.',
+      fit: 'You have measured both the installation gap and the clearance needed through the arm’s full movement.',
+      tradeoff: 'Pushing the display back can send an elbow joint toward the wall.',
+      confirm: 'Supported monitor weight and size, VESA pattern, desk thickness, clamp footprint, and rear motion.',
+      asin: 'B08FB7WFCT',
+      position: 'wall_pick_2_gas_arm'
+    })}
+    ${pick({
+      number: '03',
+      id: 'wall-pick-premium',
+      type: 'Premium articulated arm',
+      guidance: 'For smoother adjustment after the same fit and wall-clearance checks.',
+      name: 'Ergotron LX Monitor Arm',
+      shortName: 'Ergotron LX',
+      summary: 'A premium articulated option to compare when adjustment quality matters and the desk can accept its mount.',
+      fit: 'The screen and desk fall within the current compatibility requirements and the joints can move without contacting the wall.',
+      tradeoff: 'Higher cost does not remove the need for rear clearance or a structurally suitable desktop.',
+      confirm: 'Exact model, monitor range, VESA pattern, included mount, desk requirements, and warranty.',
+      asin: 'B07Q8TJ2KL',
+      position: 'wall_pick_3_premium_arm'
+    })}
+  </div>`;
+
+const lightingChoicePicks = `
+  <div class="pick-list">
+    ${pick({
+      number: '01',
+      id: 'lighting-pick-bar',
+      type: 'Monitor light bar',
+      guidance: 'For keyboard and desk illumination without using a desk edge or corner.',
+      name: 'Quntis Computer Monitor Lamp',
+      shortName: 'Quntis light bar',
+      summary: 'A monitor-mounted light is the compact route when the display’s top edge can accept the mount and the beam suits the work area.',
+      fit: 'Your monitor shape, thickness, webcam position, and viewing angle are compatible with the mount.',
+      tradeoff: 'It depends on screen geometry and is less flexible for lighting paper far to one side.',
+      confirm: 'Monitor compatibility, bar width, controls, power connection, and included parts.',
+      asin: 'B08DKQ3JG1',
+      position: 'lighting_pick_1_quntis_bar',
+      primary: true
+    })}
+    ${pick({
+      number: '02',
+      id: 'lighting-pick-clamp',
+      type: 'Clamp-on desk lamp',
+      guidance: 'For handwriting, crafts, and a light source that can move beyond the keyboard.',
+      name: 'Airlonv Clamp LED Desk Lamp',
+      shortName: 'Airlonv lamp',
+      summary: 'A side-mounted clamp lamp keeps its base off the desktop and can aim toward paper, a wall, or the keyboard.',
+      fit: 'A desk or nearby shelf has a compatible exposed edge with room for the clamp and arm.',
+      tradeoff: 'It needs edge access and its arm can compete with the monitor or wall.',
+      confirm: 'Clamp opening, arm reach, controls, power connection, and mounting instructions.',
+      asin: 'B0C4JTPPYY',
+      position: 'lighting_pick_2_clamp_lamp'
+    })}
+    ${pick({
+      number: '03',
+      id: 'lighting-pick-premium',
+      type: 'Premium monitor light bar',
+      guidance: 'A higher-end comparison for a monitor-compatible, desk-edge-free setup.',
+      name: 'BenQ ScreenBar Halo 2',
+      shortName: 'ScreenBar Halo 2',
+      summary: 'A premium monitor-mounted option to compare when controls and front-and-back lighting are priorities.',
+      fit: 'The exact monitor and any webcam fit the current compatibility guidance.',
+      tradeoff: 'It costs more and still cannot solve an incompatible display shape or top-mounted accessory conflict.',
+      confirm: 'Exact model, monitor and webcam compatibility, included controller, power requirements, and warranty.',
+      asin: 'B0DK59YKRS',
+      position: 'lighting_pick_3_halo2'
     })}
   </div>`;
 
@@ -398,16 +545,73 @@ const articles = [
       { id: 'test', title: 'Inspect under real use', html: `<p>Sit, stand, rotate the screen, open drawers, pull the chair in, and charge every daily device. Look for tension, rubbing, heat, and inaccessible switches. Recheck after a week because adhesives settle, ties shift, and the practical charging route may differ from the one you imagined.</p>` },
       { id: 'next', title: 'Choose the support method', html: `<p>If the route needs a power-strip tray, compare <a href="/articles/clamp-vs-adhesive-cable-management.html">clamp and adhesive attachment</a>. If the desk moves, use the <a href="/articles/cable-management-for-standing-desks.html">full-height standing-desk test</a>. For a compact fixed desk, finish with the <a href="/articles/small-desk-cable-management-checklist.html">small-desk checklist</a>.</p>` }
     ]
+  },
+  {
+    slug: 'cable-management-for-desks-with-back-apron',
+    category: 'Cable management',
+    title: 'Cable management for desks with a back apron',
+    description: 'Choose adhesive trays, cable clips, and sleeves when a desk apron or crossbar blocks a clamp-on cable tray.',
+    dek: 'A blocked rear edge changes the mounting method—not the goal of getting the power strip and cable slack off the floor.',
+    image: images.apron,
+    alt: 'Cable tray and routed cables beneath a wood desk with a deep rear apron',
+    readTime: '8 min read',
+    sections: [
+      { id: 'short-answer', title: 'The short answer', html: `<p>If a back apron or crossbar blocks the clamp, do not buy a thinner clamp and hope. First find a smooth mounting area that the accessory maker approves. Use an adhesive tray only when that surface, orientation, cure time, and expected load all fit the instructions. Otherwise, support the power strip somewhere structurally suitable and use lightweight clips plus a sleeve to guide the remaining cables.</p><div class="callout"><h3>The useful distinction</h3><p>The apron is not the cable problem; it is an attachment constraint. Separate the heavy load—power strip and adapters—from the lightweight routing job.</p></div>` },
+      { id: 'identify', title: 'Identify what blocks the rear edge', html: `<p>Look below the desktop before measuring accessories. A <strong>back apron</strong> is a deep panel near the rear edge. A <strong>crossbar</strong> may sit farther inward. Drawers, lift-desk controls, and a full modesty panel create different usable zones.</p><ol><li>Photograph the underside from the front and both sides.</li><li>Measure the flat underside area before the obstruction.</li><li>Note whether the obstruction moves, carries structure, or contains wiring.</li><li>Mark knee space, heat sources, and the power-strip switch location.</li></ol><p>Do not attach to a structural member or moving part unless the desk maker explicitly permits it. Our <a href="/articles/measure-desk-for-clamp-accessories.html">desk measurement guide</a> helps map the same underside constraints.</p>` },
+      { id: 'method', title: 'Choose a method by load and surface', html: `<table><thead><tr><th>Method</th><th>What it should do</th><th>Main dependency</th></tr></thead><tbody><tr><td>Adhesive tray</td><td>Support a strip and cable slack when approved for that load</td><td>Surface, orientation, preparation, cure time</td></tr><tr><td>Adhesive clips</td><td>Guide individual lightweight leads</td><td>Cable diameter and clean mounting area</td></tr><tr><td>Cable sleeve</td><td>Contain the visible desk-to-outlet bundle</td><td>Bundle diameter and route flexibility</td></tr><tr><td>Side-edge clamp</td><td>Use an exposed side when the rear is blocked</td><td>Leg clearance, edge shape, and cable reach</td></tr></tbody></table><p>A tray, clip, and sleeve are not competing versions of one product. Each handles a different part of the route. Read the fuller <a href="/articles/clamp-vs-adhesive-cable-management.html">clamp-versus-adhesive comparison</a> before committing a loaded mount to the desk finish.</p>` },
+      { id: 'products', title: 'Three current products to compare', html: `<p>We verified that each linked US listing matched the product and installation role described here on ${displayDate(datesFor('/articles/cable-management-for-desks-with-back-apron.html').modified)}. We did not copy prices, ratings, or availability. Confirm the current listing, dimensions, instructions, and return terms before ordering.</p>${apronPicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases.</p>` },
+      { id: 'install', title: 'Install without fighting the furniture', html: `<ol><li><strong>Map the route.</strong> Decide where the fixed room cable becomes the desk cable.</li><li><strong>Support the heavy parts first.</strong> Keep the strip switch reachable and warm adapters ventilated.</li><li><strong>Prepare only as directed.</strong> Follow the product and furniture makers’ surface-cleaning guidance.</li><li><strong>Respect cure time.</strong> Do not load an adhesive mount early because it feels firm.</li><li><strong>Add lightweight routing.</strong> Guide device cables around the apron without sharp bends or tight strain.</li><li><strong>Test real use.</strong> Open drawers, move the chair, and run a standing desk through its full travel if applicable.</li></ol><p>Keep reusable slack near moving devices, then follow the full <a href="/articles/how-to-route-desk-cables.html">outlet-to-device routing sequence</a>.</p>` },
+      { id: 'faq', title: 'Common questions', html: `<h3>Can I stick a tray to the vertical face of the apron?</h3><p>Only if the tray maker allows that orientation and the apron surface meets its instructions. A product designed for a horizontal underside may not be rated for a vertical pull.</p><h3>Should I drill through the apron?</h3><p>Only with permission from the furniture owner and guidance from the desk maker. An apron may be structural, and drilling can void a warranty or damage a rented desk.</p><h3>Can the power strip stay on the floor?</h3><p>It can remain in a safe, dry, ventilated, accessible location, but loose adapters and cable slack should be protected from chair casters and foot traffic. Never daisy-chain power strips.</p>` }
+    ]
+  },
+  {
+    slug: 'monitor-arm-for-desk-against-wall',
+    category: 'Monitor position',
+    title: 'Monitor arms for a small desk against a wall',
+    description: 'Compare pole and gas-spring monitor arms for a shallow desk near a wall, with clearance and clamp checks before buying.',
+    dek: 'The key number is not arm reach—it is how much hardware must travel behind the screen and below the desktop.',
+    image: images.wallMonitor,
+    alt: 'Single monitor arm folded beside a screen on a shallow desk close to a wall',
+    readTime: '9 min read',
+    sections: [
+      { id: 'short-answer', title: 'The short answer', html: `<p>A desk that is literally flush with the wall usually cannot accept a rear clamp without being moved for installation, and many articulated arms still need operating space after installation. A pole-style arm folded sideways can use less space directly behind the screen than an arm pushed straight back, but it is not automatically zero-clearance. Measure the entire motion envelope before choosing.</p><div class="callout"><h3>Two different gaps</h3><p><strong>Installation gap</strong> lets your hands and clamp reach the desk. <strong>Operating gap</strong> keeps the arm and monitor from contacting the wall during daily movement. Record both.</p></div>` },
+      { id: 'measure', title: 'Measure six things before buying', html: `<ol><li><strong>Monitor identity:</strong> exact model, weight without the stand, and supported VESA pattern.</li><li><strong>Desktop thickness:</strong> include any bevel, rear lip, or cable cover.</li><li><strong>Usable clamp depth:</strong> measure the flat underside before an apron or crossbar.</li><li><strong>Installation gap:</strong> space to position and tighten the mounting hardware.</li><li><strong>Operating gap:</strong> distance available behind the screen through the full movement.</li><li><strong>Side clearance:</strong> room for joints to fold beside the monitor without entering a walkway or shelf.</li></ol><p>Start with the general <a href="/articles/monitor-arm-compatibility-small-desk.html">monitor-arm compatibility checklist</a>, then test the wall-specific geometry with cardboard or removable tape.</p>` },
+      { id: 'geometry', title: 'Choose the arm geometry, not the marketing image', html: `<table><thead><tr><th>Mount style</th><th>Useful when</th><th>Wall-side trade-off</th></tr></thead><tbody><tr><td>Pole with articulated arm</td><td>The joints can fold laterally</td><td>Pole and clamp still need rear and underside room</td></tr><tr><td>Gas-spring arm</td><td>You reposition the screen often</td><td>Elbow travel can increase as the monitor moves back</td></tr><tr><td>Grommet mount</td><td>A suitable existing hole is approved</td><td>Does not eliminate the arm’s motion envelope</td></tr><tr><td>Wall mount</td><td>The wall and tenancy allow it</td><td>Transfers compatibility and installation constraints to the wall</td></tr><tr><td>Original stand</td><td>The wall gap is effectively zero</td><td>May use more desktop depth but avoids clamp geometry</td></tr></tbody></table><p>Do not assume a dual arm saves more depth. Two screens and two joint paths make wall contact and balance more complex.</p>` },
+      { id: 'products', title: 'Three current monitor arms to compare', html: `<p>We verified that each linked US listing matched the named monitor-arm family on ${displayDate(datesFor('/articles/monitor-arm-for-desk-against-wall.html').modified)}. Product revisions and compatibility can change, so confirm the exact model, supported monitor, desk range, included mount, and current return terms on Amazon.</p>${wallMonitorPicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. Selection here means “worth comparing for this geometry,” not guaranteed fit.</p>` },
+      { id: 'test', title: 'Run a full-clearance test before final cable routing', html: `<ol><li>Move the desk out and install only if both product and desk instructions allow the mount.</li><li>Attach the monitor with a second person if its size or weight makes solo handling unsafe.</li><li>Move the display high, low, forward, back, and to both sides.</li><li>Check the wall, clamp, desktop edge, underside obstruction, and cable connectors at every position.</li><li>Place the desk at its final gap and repeat the movements you actually need.</li><li>Only then route cables with service loops at the arm joints.</li></ol><p>If the monitor can be comfortable in one fixed position, a simpler stand or riser may protect more usable depth than an arm that cannot move. Use the <a href="/articles/small-desk-layout-guide.html">small-desk layout guide</a> to compare the whole surface.</p>` },
+      { id: 'faq', title: 'Common questions', html: `<h3>Can a monitor arm work with no wall gap?</h3><p>Not as a safe general promise. The clamp needs installation access, and the arm, monitor, cables, and connectors need some operating clearance. A specific side-folded position may be compact, but verify it with the exact hardware.</p><h3>Is a grommet mount better near a wall?</h3><p>It can move the desk attachment inward when a suitable, approved hole exists. It does not change how far the arm joints travel behind the screen.</p><h3>Will a more expensive arm use less space?</h3><p>Not necessarily. Price and adjustment quality do not determine the geometry. Compare drawings, dimensions, and the joint path of the exact model.</p>` }
+    ]
+  },
+  {
+    slug: 'monitor-light-bar-vs-clamp-lamp',
+    category: 'Comparison',
+    title: 'Monitor light bar vs. clamp lamp for a small desk',
+    description: 'Choose between a monitor light bar and a clamp-on desk lamp by screen compatibility, paper work, glare control, and available desk edges.',
+    dek: 'Both avoid a lamp base; one depends on the monitor, the other depends on a free desk or shelf edge.',
+    image: images.lightingChoice,
+    alt: 'Split small-desk scene comparing a monitor light bar with a side-mounted clamp lamp',
+    readTime: '8 min read',
+    sections: [
+      { id: 'short-answer', title: 'The one-minute choice', html: `<p>Start with a <strong>monitor light bar</strong> when the main task is keyboard or center-desk work, the monitor mount is compatible, and every desk edge is already occupied. Start with a <strong>clamp lamp</strong> when you write, draw, build, or need to aim light away from the screen. Neither is universally better: the light bar spends monitor compatibility; the clamp lamp spends edge access and arm clearance.</p>` },
+      { id: 'comparison', title: 'Side-by-side trade-offs', html: `<table><thead><tr><th>Question</th><th>Monitor light bar</th><th>Clamp lamp</th></tr></thead><tbody><tr><td>Uses desk surface?</td><td>No</td><td>No, but uses an edge</td></tr><tr><td>Mount depends on</td><td>Monitor top, rear shape, webcam</td><td>Edge thickness, underside, wall clearance</td></tr><tr><td>Best starting task</td><td>Keyboard and central work zone</td><td>Paper, crafts, side work, wall bounce</td></tr><tr><td>Aiming range</td><td>Usually centered and downward</td><td>Usually wider and more directional</td></tr><tr><td>Main conflict</td><td>Curved/thick screen or top-mounted camera</td><td>Blocked edge or arm collision</td></tr></tbody></table><p>For a broader lighting plan, read <a href="/articles/compact-desk-lighting-guide.html">task lighting without losing a desk corner</a>.</p>` },
+      { id: 'compatibility', title: 'Check the mount before comparing features', html: `<h3>For a monitor light bar</h3><ul><li>Monitor thickness, curvature, top-edge shape, and rear housing.</li><li>Webcam or sensor position and whether controls remain reachable.</li><li>Screen tilt, viewing angle, and risk of direct LED reflections.</li><li>Power connection and cable route from the monitor area.</li></ul><h3>For a clamp lamp</h3><ul><li>Desktop or shelf thickness and a flat clamping surface.</li><li>Underside apron, frame, drawer, and knee clearance.</li><li>Arm reach without hitting the wall or monitor.</li><li>Clamp pad compatibility with the furniture finish.</li></ul><p>Use the <a href="/articles/measure-desk-for-clamp-accessories.html">clamp measurement guide</a> for the edge and underside check.</p>` },
+      { id: 'products', title: 'Three current lights to compare', html: `<p>We verified that each linked US listing matched the named lighting role on ${displayDate(datesFor('/articles/monitor-light-bar-vs-clamp-lamp.html').modified)}. Confirm current compatibility, included parts, power requirements, warranty, availability, and return terms on Amazon.</p>${lightingChoicePicks}<p class="article-disclosure"><strong>Affiliate note:</strong> These are paid links. As an Amazon Associate, we earn from qualifying purchases. We do not reproduce changing prices or ratings.</p>` },
+      { id: 'placement', title: 'Run a placement and glare test', html: `<ol><li>Clear the desk and sit in the normal working position.</li><li>Display a dark screen and place a sheet of white paper in the main work area.</li><li>Aim the light so the paper or keyboard is visible without seeing a bright LED image in the screen.</li><li>Check reflections in glasses, glossy furniture, and framed art.</li><li>Move the monitor, webcam, notebook, and lamp through normal use.</li><li>Repeat during daytime if a window changes the contrast.</li></ol><p>Brightness control is useful only if the control is reachable and the lowest practical setting suits the room. The practical goal is a controllable, glare-aware work surface rather than one setting that claims to suit everyone.</p>` },
+      { id: 'faq', title: 'Common questions', html: `<h3>Is a monitor light bar good for handwriting?</h3><p>It can light the central desk area, but a directional clamp lamp is often easier to move toward paper placed to one side. Your screen height and desk depth change the result.</p><h3>Will a light bar fit behind a webcam?</h3><p>Some combinations can coexist, but this is model-specific. Check both makers’ compatibility information and the exact physical overlap before ordering.</p><h3>Which option is better for a curved monitor?</h3><p>Neither category is guaranteed. Some light bars publish curved-monitor guidance; others do not. A clamp lamp avoids mounting to the screen but needs a suitable desk or shelf edge.</p>` }
+    ]
   }
 ];
 
 const relatedGuideSlugs = Object.freeze({
-  'clamp-vs-adhesive-cable-management': ['no-drill-cable-management-for-renters', 'measure-desk-for-clamp-accessories', 'how-to-route-desk-cables'],
+  'clamp-vs-adhesive-cable-management': ['cable-management-for-desks-with-back-apron', 'no-drill-cable-management-for-renters', 'measure-desk-for-clamp-accessories'],
   'measure-desk-for-clamp-accessories': ['no-drill-cable-management-for-renters', 'monitor-arm-compatibility-small-desk', 'compact-desk-lighting-guide'],
   'vertical-storage-for-small-desks': ['small-desk-layout-guide', 'renter-friendly-desk-upgrades', 'monitor-arm-compatibility-small-desk'],
-  'monitor-arm-compatibility-small-desk': ['measure-desk-for-clamp-accessories', 'small-desk-layout-guide', 'vertical-storage-for-small-desks'],
-  'compact-desk-lighting-guide': ['small-desk-layout-guide', 'vertical-storage-for-small-desks', 'measure-desk-for-clamp-accessories'],
-  'renter-friendly-desk-upgrades': ['no-drill-cable-management-for-renters', 'vertical-storage-for-small-desks', 'small-desk-layout-guide']
+  'monitor-arm-compatibility-small-desk': ['monitor-arm-for-desk-against-wall', 'measure-desk-for-clamp-accessories', 'small-desk-layout-guide'],
+  'compact-desk-lighting-guide': ['monitor-light-bar-vs-clamp-lamp', 'small-desk-layout-guide', 'measure-desk-for-clamp-accessories'],
+  'renter-friendly-desk-upgrades': ['no-drill-cable-management-for-renters', 'vertical-storage-for-small-desks', 'small-desk-layout-guide'],
+  'cable-management-for-desks-with-back-apron': ['no-drill-cable-management-for-renters', 'clamp-vs-adhesive-cable-management', 'how-to-route-desk-cables'],
+  'monitor-arm-for-desk-against-wall': ['monitor-arm-compatibility-small-desk', 'measure-desk-for-clamp-accessories', 'small-desk-layout-guide'],
+  'monitor-light-bar-vs-clamp-lamp': ['compact-desk-lighting-guide', 'measure-desk-for-clamp-accessories', 'small-desk-layout-guide']
 });
 
 function relatedArticles(article) {

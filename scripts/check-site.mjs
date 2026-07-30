@@ -63,7 +63,7 @@ for (const entry of sitemapEntries) {
 }
 const lastmodByUrl = new Map(sitemapEntries.map((entry) => [entry.loc, entry.lastmod]));
 const indexedGuides = [...sitemapText.matchAll(/<loc>https:\/\/bestdesksetup\.com\/articles\/([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (indexedGuides.length < 10) errors.push(`sitemap: expected at least 10 article URLs, found ${indexedGuides.length}`);
+if (indexedGuides.length < 14) errors.push(`sitemap: expected at least 14 article URLs, found ${indexedGuides.length}`);
 for (const guide of indexedGuides) {
   if (!(await exists(path.join(root, 'articles', guide)))) errors.push(`sitemap: missing ${guide}`);
 }
@@ -84,9 +84,11 @@ if (!home.includes('href="/guides.html"') || !home.includes('href="/articles/no-
 }
 
 const guideIndex = await readFile(path.join(root, 'guides.html'), 'utf8');
+let totalAffiliateLinks = 0;
 for (const guide of indexedGuides) {
   if (!guideIndex.includes(`href="/articles/${guide}"`)) errors.push(`guides.html: missing indexed guide link ${guide}`);
   const articleHtml = await readFile(path.join(root, 'articles', guide), 'utf8');
+  totalAffiliateLinks += [...articleHtml.matchAll(/\bdata-affiliate\b/g)].length;
   const relatedSection = articleHtml.match(/<section class="related-guides">([\s\S]*?)<\/section>/)?.[1] || '';
   const relatedLinks = [...relatedSection.matchAll(/<li><a href="\/articles\//g)].length;
   if (relatedLinks !== 3) errors.push(`articles/${guide}: expected 3 related guide links, found ${relatedLinks}`);
@@ -107,6 +109,23 @@ for (const guide of indexedGuides) {
   }
 }
 
+const purchaseIntentGuides = new Map([
+  ['cable-management-for-desks-with-back-apron.html', ['B09J5HH2LR', 'B071FXZBMV', 'B015HWXG4M']],
+  ['monitor-arm-for-desk-against-wall.html', ['B00B21TLQU', 'B08FB7WFCT', 'B07Q8TJ2KL']],
+  ['monitor-light-bar-vs-clamp-lamp.html', ['B08DKQ3JG1', 'B0C4JTPPYY', 'B0DK59YKRS']]
+]);
+for (const [guide, expectedAsins] of purchaseIntentGuides) {
+  if (!indexedGuides.includes(guide)) errors.push(`purchase guide: ${guide} is not indexed`);
+  if (!home.includes(`href="/articles/${guide}"`)) errors.push(`index.html: missing purchase-guide link ${guide}`);
+  const articleHtml = await readFile(path.join(root, 'articles', guide), 'utf8');
+  const actualAsins = [...articleHtml.matchAll(/data-asin="([^"]+)"/g)].map((match) => match[1]);
+  if (actualAsins.length !== 3) errors.push(`articles/${guide}: expected 3 affiliate choices, found ${actualAsins.length}`);
+  if (new Set(actualAsins).size !== actualAsins.length) errors.push(`articles/${guide}: contains duplicate affiliate choices`);
+  for (const asin of expectedAsins) {
+    if (!actualAsins.includes(asin)) errors.push(`articles/${guide}: missing verified ASIN ${asin}`);
+  }
+}
+
 const core = await readFile(path.join(root, 'articles/no-drill-cable-management-for-renters.html'), 'utf8');
 const affiliateLinks = [...core.matchAll(/data-affiliate/g)].length;
 if (affiliateLinks !== 4) errors.push(`core guide: expected 4 affiliate links, found ${affiliateLinks}`);
@@ -123,4 +142,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Site checks passed: ${checked.size} HTML files, ${indexedGuides.length} indexed guides, ${affiliateLinks} tracked affiliate links, brand and article schemas verified.`);
+console.log(`Site checks passed: ${checked.size} HTML files, ${indexedGuides.length} indexed guides, ${totalAffiliateLinks} tracked affiliate links, brand and article schemas verified.`);
